@@ -1,4 +1,4 @@
-# OrderFaz Auth and Logistic
+# Auth and Logistic
 
 This repository contains two services auth and logistic 
 
