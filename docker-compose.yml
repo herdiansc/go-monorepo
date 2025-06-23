@@ -7,7 +7,7 @@ services:
     ports:
       - "9001:9001"
     networks:
-      - orderfaz
+      - go-mnrp
     depends_on:
       - postgres_svc
   auth_svc:
@@ -16,7 +16,7 @@ services:
     ports:
       - "9000:9000"
     networks:
-      - orderfaz
+      - go-mnrp
     depends_on:
       - postgres_svc
   postgres_svc:
@@ -29,7 +29,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - orderfaz
+      - go-mnrp
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -37,5 +37,5 @@ volumes:
   pgdata: {}
 
 networks:
-  orderfaz:
+  go-mnrp:
     driver: bridge
