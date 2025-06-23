@@ -1,0 +1,118 @@
+basePath: /
+definitions:
+  models.LoginRequest:
+    properties:
+      msisdn:
+        type: string
+      password:
+        type: string
+    required:
+    - msisdn
+    - password
+    type: object
+  models.RegisterRequest:
+    properties:
+      msisdn:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - msisdn
+    - password
+    - username
+    type: object
+  models.Response:
+    properties:
+      data: {}
+      message:
+        type: string
+    type: object
+info:
+  contact:
+    email: herdiansc@gmail.com
+  description: This is a auth service
+  license:
+    name: MIT
+  title: Auth Service
+  version: "1.0"
+paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Add a new auth to database
+      parameters:
+      - description: Request of Creating Order Object
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: internal server error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Add a new auth to database
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Add a new auth to database
+      parameters:
+      - description: Request of Creating Order Object
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: internal server error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Add a new auth to database
+  /verify:
+    post:
+      consumes:
+      - application/json
+      description: Add a new auth to database
+      parameters:
+      - description: With the bearer started
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: Add a new auth to database
+swagger: "2.0"

@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  logistic_svc:
+    container_name: logistic-svc
+    build: ./logistic
+    ports:
+      - "9001:9001"
+    networks:
+      - orderfaz
+    depends_on:
+      - postgres_svc
+  auth_svc:
+    container_name: auth-svc
+    build: ./auth
+    ports:
+      - "9000:9000"
+    networks:
+      - orderfaz
+    depends_on:
+      - postgres_svc
+  postgres_svc:
+    container_name: postgres-svc
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - orderfaz
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:  
+  pgdata: {}
+
+networks:
+  orderfaz:
+    driver: bridge

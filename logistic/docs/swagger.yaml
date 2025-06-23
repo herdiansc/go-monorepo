@@ -1,0 +1,85 @@
+basePath: /
+definitions:
+  models.Response:
+    properties:
+      data: {}
+      message:
+        type: string
+    type: object
+info:
+  contact:
+    email: herdiansc@gmail.com
+  description: This is a logistic service
+  license:
+    name: MIT
+  title: Logistic Service
+  version: "1.0"
+paths:
+  /logistics:
+    get:
+      consumes:
+      - application/json
+      description: Add a new auth to database
+      parameters:
+      - description: With the bearer started
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: origin
+        in: query
+        name: origin_name
+        type: string
+      - description: destination
+        in: query
+        name: destination_name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: internal server error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Add a new auth to database
+  /logistics/{uuid}:
+    get:
+      consumes:
+      - application/json
+      description: Add a new auth to database
+      parameters:
+      - description: With the bearer started
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: UUID
+        in: path
+        name: uuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: bad request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: internal server error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Add a new auth to database
+swagger: "2.0"
